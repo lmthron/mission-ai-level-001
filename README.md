@@ -21,6 +21,19 @@ Mission AI is our internal AI learning program designed to help team members und
 
 **Reward:** Trainee Agent 001 Badge
 
+### Level 001 - Module 2: The Anatomy of a Good Prompt
+
+**Topics Covered:**
+- The four elements of effective prompts
+- Context, Specificity, Constraints, and Format
+- Transforming vague prompts into specific ones
+- Iterating and refining AI responses
+- Common prompting mistakes
+
+**Passing Score:** 90% (9 out of 10 questions)
+
+**Reward:** Field Operative Badge
+
 ## 🚀 How to Take a Quiz
 
 1. Click the quiz link above
@@ -32,7 +45,7 @@ Mission AI is our internal AI learning program designed to help team members und
 
 ## 🏅 Earning Your Badge
 
-Pass the checkpoint quiz with 90% or higher to earn your Trainee Agent status and advance to the next module.
+Pass the checkpoint quiz with 90% or higher to earn your status and advance to the next module.
 
 ## 🔧 Technical Details
 
