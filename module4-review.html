@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Module 4 Review Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .intro h2 {
+            color: #1B365D;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .concept-section {
+            margin-bottom: 35px;
+        }
+
+        .concept-title {
+            color: #1B365D;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #4A90E2;
+        }
+
+        .framework-box {
+            background: #e3f2fd;
+            border: 2px solid #4A90E2;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .framework-box h4 {
+            color: #1B365D;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .question-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #7CB342;
+            text-align: center;
+        }
+
+        .question-card strong {
+            color: #1B365D;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .question-card .answer {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .decision-rule {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            text-align: center;
+            border: 2px solid #ffc107;
+        }
+
+        .decision-rule strong {
+            color: #856404;
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .use-case-card {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .use-case-card h4 {
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .use-ai {
+            background: #f1f8e9;
+            border: 2px solid #7CB342;
+        }
+
+        .use-ai h4 {
+            color: #558b2f;
+        }
+
+        .skip-ai {
+            background: #ffebee;
+            border: 2px solid #e53935;
+        }
+
+        .skip-ai h4 {
+            color: #c62828;
+        }
+
+        .use-case-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .use-case-card li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .use-ai li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7CB342;
+            font-weight: bold;
+        }
+
+        .skip-ai li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #e53935;
+            font-weight: bold;
+        }
+
+        .custom-instructions-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid #4A90E2;
+        }
+
+        .custom-instructions-box h4 {
+            color: #1B365D;
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .custom-instructions-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .two-parts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .part-card {
+            background: white;
+            padding: 18px;
+            border-radius: 6px;
+            border: 2px solid #4A90E2;
+        }
+
+        .part-card strong {
+            color: #1B365D;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .part-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .part-card li {
+            padding: 4px 0;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .file-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .file-type {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #4A90E2;
+        }
+
+        .file-type strong {
+            color: #1B365D;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .file-type p {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .privacy-section {
+            background: #ffebee;
+            border: 2px solid #e53935;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .privacy-section h4 {
+            color: #c62828;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .privacy-list {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-list strong {
+            color: #1B365D;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .privacy-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .privacy-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .never li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #e53935;
+            font-weight: bold;
+        }
+
+        .caution li::before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+            font-size: 16px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #4A90E2, #357abd);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background: #7CB342;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-button:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px;
+            }
+
+            .question-cards, .use-cases, .two-parts, .file-types {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">📖</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Module 4 Review Guide</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>Practical AI Foundations</h2>
+                <p>Review the decision framework, Custom Instructions, and file handling before taking your Module 4 checkpoint quiz. This module brings together everything you've learned into practical application.</p>
+            </div>
+
+            <!-- Three Question Framework -->
+            <div class="concept-section">
+                <div class="concept-title">The Three-Question Decision Framework</div>
+                
+                <div class="framework-box">
+                    <h4>Ask Yourself These Questions to Decide Whether to Use AI:</h4>
+                    <div class="question-cards">
+                        <div class="question-card">
+                            <strong>1. Is this task repetitive?</strong>
+                            <div class="answer">Yes → Good for AI<br>No → Maybe not worth setup</div>
+                        </div>
+                        <div class="question-card">
+                            <strong>2. Would explaining take less time than doing?</strong>
+                            <div class="answer">Yes → AI might help<br>No → Just do it yourself</div>
+                        </div>
+                        <div class="question-card">
+                            <strong>3. Can I verify the output easily?</strong>
+                            <div class="answer">Yes → AI can help<br>No → Too risky</div>
+                        </div>
+                    </div>
+                    <div class="decision-rule">
+                        <strong>Decision Rule:</strong> If all three are "Yes" → Use AI. If two or more are "No" → Skip AI.
+                    </div>
+                </div>
+            </div>
+
+            <!-- When to Use vs Skip -->
+            <div class="concept-section">
+                <div class="concept-title">When to Use AI vs. When to Skip It</div>
+                
+                <div class="use-cases">
+                    <div class="use-case-card use-ai">
+                        <h4>✅ AI Saves Time When:</h4>
+                        <ul>
+                            <li>Tasks are repetitive</li>
+                            <li>Tasks are time-consuming but straightforward</li>
+                            <li>You need multiple options</li>
+                            <li>You're not sure how to start</li>
+                            <li>Format matters more than perfect wording</li>
+                        </ul>
+                    </div>
+                    <div class="use-case-card skip-ai">
+                        <h4>❌ Skip AI When:</h4>
+                        <ul>
+                            <li>The task is quicker to do yourself</li>
+                            <li>It requires specific internal knowledge*</li>
+                            <li>It's personal/creative work where your voice matters</li>
+                            <li>You're the only expert and can't verify</li>
+                        </ul>
+                        <p style="margin-top: 12px; font-size: 12px; font-style: italic; color: #666;">*ConnexPay has Claude connected to some company systems through connectors (for example, Slack, Microsoft, HubSpot, Confluence, Jira). For these systems, Claude CAN access internal information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Instructions -->
+            <div class="concept-section">
+                <div class="concept-title">Custom Instructions - Set Preferences Once</div>
+                
+                <div class="custom-instructions-box">
+                    <h4>What Are Custom Instructions?</h4>
+                    <p>Instead of explaining your preferences every time you use AI, set them once. AI remembers and applies them automatically to every conversation.</p>
+                    <p><strong>Purpose:</strong> Save time by teaching AI your working style and general preferences.</p>
+                </div>
+
+                <div class="custom-instructions-box">
+                    <h4>The Two-Part Structure</h4>
+                    <div class="two-parts">
+                        <div class="part-card">
+                            <strong>Part 1: About You</strong>
+                            <ul>
+                                <li>• Your role and context</li>
+                                <li>• Who you work with</li>
+                                <li>• The type of work you do</li>
+                                <li>• Your typical audiences</li>
+                            </ul>
+                        </div>
+                        <div class="part-card">
+                            <strong>Part 2: How to Respond</strong>
+                            <ul>
+                                <li>• Format preferences</li>
+                                <li>• Tone (formal, casual, technical)</li>
+                                <li>• When to ask clarifying questions</li>
+                                <li>• Response length and style</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-instructions-box">
+                    <h4>What to Include (and Not Include)</h4>
+                    <p><strong style="color: #7CB342;">✓ Include:</strong> Broad preferences that apply to most of your AI conversations</p>
+                    <p><strong style="color: #e53935;">✗ Don't Include:</strong> Temporary projects, detailed task procedures, current priorities that change frequently</p>
+                </div>
+            </div>
+
+            <!-- Working with Files -->
+            <div class="concept-section">
+                <div class="concept-title">Working with Files</div>
+                
+                <div class="custom-instructions-box">
+                    <h4>You Can Upload Files, Not Just Type</h4>
+                    <p>AI can work with PDFs, images, Word docs, PowerPoint slides, Excel/CSV files. You don't need to copy-paste everything - just upload the file and ask questions.</p>
+                </div>
+
+                <div class="file-types">
+                    <div class="file-type">
+                        <strong>📄 PDFs</strong>
+                        <p>Upload a report → Ask: "What are the top 3 findings?"</p>
+                    </div>
+                    <div class="file-type">
+                        <strong>🖼️ Images</strong>
+                        <p>Upload a screenshot → Ask: "What does this error mean?"</p>
+                    </div>
+                    <div class="file-type">
+                        <strong>📝 Documents</strong>
+                        <p>Upload Word doc → Ask: "Improve clarity for non-technical readers"</p>
+                    </div>
+                    <div class="file-type">
+                        <strong>📊 Spreadsheets</strong>
+                        <p>Upload Excel → Ask: "What trends do you see in this data?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy -->
+            <div class="concept-section">
+                <div class="concept-title">Privacy & Security</div>
+                
+                <div class="privacy-section">
+                    <h4>🔒 Critical Privacy Guidelines</h4>
+                    
+                    <div class="privacy-list never">
+                        <strong>❌ NEVER Upload:</strong>
+                        <ul>
+                            <li>Passwords, API keys, or credentials</li>
+                            <li>Authentication tokens or security certificates</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-list caution">
+                        <strong>⚠️ Use Caution With:</strong>
+                        <ul>
+                            <li>Customer personal information (names, emails, payment details)</li>
+                            <li>Confidential financial data</li>
+                            <li>Internal security documentation</li>
+                            <li>Employee personal information</li>
+                            <li>Anything marked "confidential"</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 15px; border-radius: 6px; margin-top: 15px;">
+                        <strong style="color: #1B365D; display: block; margin-bottom: 10px;">✅ Best Practices:</strong>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 5px 0; font-size: 14px; color: #555;">1. Follow company policy about AI uploads</li>
+                            <li style="padding: 5px 0; font-size: 14px; color: #555;">2. Only upload what's necessary for the task</li>
+                            <li style="padding: 5px 0; font-size: 14px; color: #555;">3. Anonymize when possible</li>
+                            <li style="padding: 5px 0; font-size: 14px; color: #555;">4. When in doubt, ask your manager or Security</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="custom-instructions-box">
+                    <h4>Understanding Enterprise Protections</h4>
+                    <p>ConnexPay uses Pro or Enterprise versions of AI tools with stronger protections:</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative; color: #555;">
+                            <span style="position: absolute; left: 0; color: #7CB342;">✓</span>
+                            Your data is not used to train AI models
+                        </li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative; color: #555;">
+                            <span style="position: absolute; left: 0; color: #7CB342;">✓</span>
+                            Enterprise-grade security and compliance controls
+                        </li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative; color: #555;">
+                            <span style="position: absolute; left: 0; color: #7CB342;">✓</span>
+                            Data stays within organizational boundaries
+                        </li>
+                    </ul>
+                    <p style="margin-top: 12px; font-weight: 600; color: #856404;">However, good security habits still matter. You might accidentally use a personal account, so build good practices.</p>
+                </div>
+            </div>
+
+            <!-- Key Takeaway -->
+            <div class="highlight-box">
+                <strong>🎯 Key Takeaway:</strong>
+                <p>Use the three-question framework to decide when AI is worth the effort. Set Custom Instructions once to save time across all conversations. Upload files to work with real documents. Always follow privacy guidelines - even with Enterprise protections, good security practices matter.</p>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>🎖️ Ready for Your Final Beginner Mission?</h3>
+                <p>You've reviewed the practical foundations. Complete this checkpoint to earn Field Agent status and graduate from Level 001!</p>
+                <a href="https://lmthron.github.io/mission-ai-level-001/module4-quiz.html" class="quiz-button">Take Module 4 Quiz</a>
+                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">90% required to pass and complete the Beginner track 🎖️</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
