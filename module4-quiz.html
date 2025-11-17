@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Level 001 - Module 4 Checkpoint</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .question-container {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-number {
+            color: #4A90E2;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1B365D;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            border-color: #4A90E2;
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: #4A90E2;
+            background: #e3f2fd;
+        }
+
+        .option.correct {
+            border-color: #7CB342;
+            background: #f1f8e9;
+        }
+
+        .option.incorrect {
+            border-color: #e53935;
+            background: #ffebee;
+        }
+
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            background: #4A90E2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .option.correct .option-letter {
+            background: #7CB342;
+        }
+
+        .option.incorrect .option-letter {
+            background: #e53935;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .feedback.correct {
+            background: #f1f8e9;
+            border-left: 4px solid #7CB342;
+            color: #33691e;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            border-left: 4px solid #e53935;
+            color: #b71c1c;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #4A90E2;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #357abd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #bdbdbd;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+        }
+
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-circle.pass {
+            background: linear-gradient(135deg, #7CB342, #9ccc65);
+            box-shadow: 0 8px 24px rgba(124, 179, 66, 0.4);
+        }
+
+        .score-circle.fail {
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            box-shadow: 0 8px 24px rgba(229, 57, 53, 0.4);
+        }
+
+        .score-label {
+            font-size: 16px;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .result-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1B365D;
+            margin: 20px 0;
+        }
+
+        .result-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .badge-earned {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #1B365D, #2a4a7a);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .badge-earned h3 {
+            margin-bottom: 10px;
+            color: #7CB342;
+        }
+
+        .start-screen {
+            text-align: center;
+        }
+
+        .start-screen h2 {
+            color: #1B365D;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .mission-brief {
+            background: #f8f9fa;
+            border-left: 4px solid #4A90E2;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 4px;
+            line-height: 1.8;
+        }
+
+        .mission-brief strong {
+            color: #1B365D;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4A90E2, #7CB342);
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .question {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">🎯</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Module 4 Final Checkpoint Quiz</p>
+        </div>
+
+        <div class="content">
+            <div id="startScreen" class="start-screen">
+                <h2>Final Beginner Mission</h2>
+                <p class="intro">
+                    You've learned AI fundamentals, prompt engineering, and output verification. This final checkpoint tests your practical AI foundations: when to use AI, how to customize it, and how to work with files.
+                </p>
+                
+                <div class="mission-brief">
+                    <strong>Mission Briefing:</strong><br>
+                    • 10 questions covering practical AI applications<br>
+                    • Focus on decision-making, Custom Instructions, and file handling<br>
+                    • You must score 90% or higher to pass<br>
+                    • You can retake the quiz if needed<br>
+                    • Complete this to earn Field Agent status and graduate to Level 002
+                </div>
+
+                <button class="btn-primary" onclick="startQuiz()">BEGIN FINAL MISSION</button>
+            </div>
+
+            <div id="quizArea" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+
+                <div id="questionsContainer"></div>
+
+                <div class="nav-buttons">
+                    <button class="btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                    <button class="btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+                </div>
+            </div>
+
+            <div id="results" class="results">
+                <div id="scoreCircle" class="score-circle">
+                    <div>
+                        <span id="scorePercent">0</span>%
+                        <div class="score-label">MISSION SCORE</div>
+                    </div>
+                </div>
+                
+                <div class="result-message" id="resultMessage"></div>
+                
+                <div class="result-details">
+                    <div class="result-item">
+                        <span>Questions Correct:</span>
+                        <strong id="correctCount">0</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Questions:</span>
+                        <strong id="totalCount">0</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Pass Threshold:</span>
+                        <strong>90%</strong>
+                    </div>
+                </div>
+
+                <div id="badgeSection"></div>
+
+                <button class="btn-primary" onclick="resetQuiz()">Retake Mission</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "According to the Simple Decision Framework in Module 4, what are the THREE questions you should ask to decide whether to use AI?",
+                options: [
+                    "Is it important? Is it urgent? Can AI handle this type of task?",
+                    "Is it repetitive? Would explaining take less time than doing? Can I verify output?",
+                    "Is it repetitive? Is it time-consuming? Does it need verification?",
+                    "Is it complex? Is it creative? Does it involve data?"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Perfect! The three-question framework is: (1) Is this task repetitive? (2) Would explaining this to someone take less time than doing it myself? (3) Can I verify the output easily?",
+                    incorrect: "Review the Simple Decision Framework in Part 1. The three questions are: (1) Is this task repetitive? (2) Would explaining this to someone take less time than doing it myself? (3) Can I verify the output easily? If all three are 'Yes,' use AI. If two or more are 'No,' skip AI."
+                }
+            },
+            {
+                question: "You need to send a quick Slack message to your colleague asking if they want to grab lunch. This will take about 30 seconds. According to Module 4, should you use AI for this?",
+                options: [
+                    "No, because the task is quicker to do yourself than to explain to AI",
+                    "Yes, because AI can help craft better informal messages to colleagues",
+                    "No, because AI doesn't understand your relationship with the colleague",
+                    "Yes, because even simple messages benefit from AI review for tone and clarity"
+                ],
+                correct: 0,
+                feedback: {
+                    correct: "Correct! The module lists this as an example of when to skip AI: 'The task is quicker to do yourself - Sending a quick Slack message (30 seconds).' Apply the framework: Would explaining take less time than doing? No → Skip AI.",
+                    incorrect: "This is in the 'Skip AI When' section: 'The task is quicker to do yourself - Sending a quick Slack message (30 seconds).' When something takes 30 seconds and is straightforward, explaining it to AI wastes time. The decision framework asks: Would explaining this take less time than doing it myself? If no, skip AI."
+                }
+            },
+            {
+                question: "What is the purpose of Custom Instructions according to Module 4?",
+                options: [
+                    "To teach AI your company's proprietary processes and internal workflows",
+                    "To set your default preferences once so AI applies them automatically to every conversation",
+                    "To create templates for common tasks that AI can reuse across different projects",
+                    "To provide detailed task-specific procedures for AI to follow on each project"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Exactly! The module states: 'Instead of explaining your preferences every time you use AI, set them once. AI remembers and applies them automatically to every conversation.'",
+                    incorrect: "Review Part 2. Custom Instructions are your default preferences applied automatically to all conversations. They're not for task-specific procedures (that's what Skills are for in Intermediate), company processes, or templates. They're about YOUR working style and general preferences."
+                }
+            },
+            {
+                question: "In the two-part structure of Custom Instructions, what should go in Part 1: 'What would you like AI to know about you?'",
+                options: [
+                    "Your preferred response format, tone, and when to ask clarifying questions",
+                    "Detailed information about your current projects and active priorities",
+                    "Step-by-step procedures for common tasks you perform regularly",
+                    "Your role, context, who you work with, and the type of work you do"
+                ],
+                correct: 3,
+                feedback: {
+                    correct: "Perfect! Part 1 is about context: your role, who you work with, and the type of work you do. The module example shows: 'I'm a project manager at ConnexPay... I work with engineering, product, and business teams.'",
+                    incorrect: "Review the Two-Part Structure in Part 2. Part 1 is 'What would you like AI to know about you?' - your role/context, who you work with, type of work. Current projects are temporary (don't include). Response preferences go in Part 2. Detailed procedures are for Skills, not Custom Instructions."
+                }
+            },
+            {
+                question: "According to the three-question decision framework, which task would score 'Yes' on ALL three criteria (repetitive, explaining takes less time than doing, can verify)?",
+                options: [
+                    "Drafting similar customer onboarding emails every week using your standard template and company information",
+                    "Writing a one-time proposal for a unique client opportunity you've never encountered before",
+                    "Checking the current status of a server you monitor constantly throughout the day",
+                    "Creating original creative content where your personal writing style is the main value"
+                ],
+                correct: 0,
+                feedback: {
+                    correct: "Perfect! Weekly customer emails are: (1) Repetitive ✓, (2) Explaining the template/structure to AI is faster than writing from scratch ✓, (3) You can easily verify the facts and tone ✓. This meets all three criteria.",
+                    incorrect: "Apply the three-question framework: (1) Is it repetitive? (2) Would explaining take less time than doing? (3) Can I verify output? The correct answer scores YES on all three. One-time tasks aren't repetitive. Quick status checks take longer to explain than to do. Creative work where your voice IS the value can't be easily verified as 'correct.'"
+                }
+            },
+            {
+                question: "The module states that ConnexPay uses Pro or Enterprise AI with stronger data protections. However, it also says 'this doesn't mean you should upload everything.' Why?",
+                options: [
+                    "Pro and Enterprise versions have the same privacy risks as free versions",
+                    "Enterprise protections only apply to text conversations, not file uploads",
+                    "Enterprise AI still shares data with the AI company for quality improvement purposes",
+                    "Even with protections, good security practices matter - you might accidentally use a personal account or make other errors"
+                ],
+                correct: 3,
+                feedback: {
+                    correct: "Exactly! The module states: 'Even with Enterprise protections, accidents happen. You might accidentally use a personal AI account instead of your work account. Building good habits about what you upload protects both you and ConnexPay.'",
+                    incorrect: "Review the Enterprise Protections section in Part 3. While Enterprise AI provides stronger protections (data not used for training, organizational boundaries), good habits still matter because 'accidents happen. You might accidentally use a personal AI account instead of your work account.'"
+                }
+            },
+            {
+                question: "According to Module 4's privacy guidelines, which of these should you NEVER upload to AI?",
+                options: [
+                    "A public industry whitepaper you want summarized for your team",
+                    "Customer feedback data with names and email addresses anonymized",
+                    "Passwords, API keys, authentication tokens, or security certificates",
+                    "Internal meeting notes marked as 'confidential' but containing no customer data"
+                ],
+                correct: 2,
+                feedback: {
+                    correct: "Correct! The Privacy Rule states under 'Never upload': Passwords, API keys, or credentials; Authentication tokens or security certificates. These are absolute no-nos.",
+                    incorrect: "Review the Privacy Rule in Part 3. The 'Never upload' list includes: Passwords, API keys, credentials, authentication tokens, security certificates. Public whitepapers are fine. Anonymized data is 'use caution' not 'never.' Confidential internal notes fall under 'use caution' and 'when in doubt, ask.'"
+                }
+            },
+            {
+                question: "The module mentions that ConnexPay has Claude connected to company systems through connectors. What does this mean for the 'Skip AI When' guideline about internal knowledge?",
+                options: [
+                    "For connected systems (for example, Slack, Microsoft, HubSpot, Confluence, Jira), Claude CAN access internal information",
+                    "You should never use AI for internal information since it might leak to external systems",
+                    "Connectors only work for public information, not confidential internal company data",
+                    "The connector access means you don't need to worry about any privacy considerations"
+                ],
+                correct: 0,
+                feedback: {
+                    correct: "Exactly! The module notes: 'ConnexPay has Claude connected to some company systems through connectors (for example, Slack, Microsoft, HubSpot, Confluence, Jira). For these systems, Claude CAN access internal information.'",
+                    incorrect: "The module clarifies that the 'requires specific internal knowledge' limitation has an exception: 'ConnexPay has Claude connected to some company systems through connectors (for example, Slack, Microsoft, HubSpot, Confluence, Jira). For these systems, Claude CAN access internal information.' This means Claude can help with some internal knowledge tasks when properly connected."
+                }
+            },
+            {
+                question: "Part 2 of Custom Instructions is 'How would you like AI to respond?' Which of these belongs in Part 2?",
+                options: [
+                    "My stakeholders include both technical developers and non-technical executives",
+                    "Keep responses concise and actionable. Use bullet points for lists. Ask clarifying questions if my request is ambiguous.",
+                    "I work in customer success at a fintech company dealing with payment processors",
+                    "I manage multiple projects simultaneously across engineering and product teams"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Perfect! Part 2 is about response preferences: format, tone, and behavior. 'Keep responses concise... Use bullet points... Ask clarifying questions' are all response preferences.",
+                    incorrect: "Review the Two-Part Structure and Complete Example. Part 1 is about YOU (role, who you work with, type of work). Part 2 is about HOW AI SHOULD RESPOND (format preferences, tone, when to ask questions). Options A, C, and D are all context about you and belong in Part 1."
+                }
+            },
+            {
+                question: "You have a 50-page technical report you need to understand. According to Module 4, what should you do?",
+                options: [
+                    "Read it yourself since AI can't handle documents longer than 20 pages effectively",
+                    "Upload the PDF and ask AI specific questions about it like 'What are the top 3 findings?'",
+                    "Upload it and ask AI to rewrite it in simpler language for your team",
+                    "Copy and paste the entire text into AI to ensure nothing is missed"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Exactly! The module shows: 'Upload a report → Ask: \"What are the top 3 findings?\"' File uploads let you work with actual documents without copying/pasting, and specific questions get better results.",
+                    incorrect: "Review Part 3 on Working with Files. The module demonstrates: 'Upload a report → Ask: \"What are the top 3 findings?\"' You don't need to copy-paste or read everything yourself. AI handles long PDFs fine - just upload and ask specific questions. The module teaches using files for analysis, not rewriting entire documents."
+                }
+            }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let score = 0;
+
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizArea').style.display = 'block';
+            renderQuestions();
+            showQuestion(0);
+            updateProgress();
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            quizData.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.id = `question-${index}`;
+                
+                const optionsHTML = q.options.map((option, optIndex) => `
+                    <div class="option" onclick="selectAnswer(${index}, ${optIndex})">
+                        <span class="option-letter">${String.fromCharCode(65 + optIndex)}</span>
+                        <span>${option}</span>
+                    </div>
+                `).join('');
+
+                questionDiv.innerHTML = `
+                    <div class="question-number">Question ${index + 1} of ${quizData.length}</div>
+                    <div class="question">${q.question}</div>
+                    <div class="options" id="options-${index}">
+                        ${optionsHTML}
+                    </div>
+                    <div class="feedback" id="feedback-${index}"></div>
+                `;
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function showQuestion(index) {
+            document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+            document.getElementById(`question-${index}`).classList.add('active');
+            
+            currentQuestion = index;
+            updateButtons();
+            updateProgress();
+        }
+
+        function selectAnswer(questionIndex, answerIndex) {
+            if (userAnswers[questionIndex] !== undefined) return;
+
+            userAnswers[questionIndex] = answerIndex;
+            
+            const optionsContainer = document.getElementById(`options-${questionIndex}`);
+            const options = optionsContainer.querySelectorAll('.option');
+            const feedbackDiv = document.getElementById(`feedback-${questionIndex}`);
+            
+            const isCorrect = answerIndex === quizData[questionIndex].correct;
+            
+            options.forEach((option, idx) => {
+                if (idx === quizData[questionIndex].correct) {
+                    option.classList.add('correct');
+                } else if (idx === answerIndex) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            feedbackDiv.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedbackDiv.innerHTML = isCorrect ? 
+                `✓ ${quizData[questionIndex].feedback.correct}` : 
+                `✗ ${quizData[questionIndex].feedback.incorrect}`;
+
+            if (isCorrect) score++;
+            
+            updateButtons();
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                if (userAnswers[currentQuestion] !== undefined) {
+                    nextBtn.textContent = 'View Results';
+                    nextBtn.disabled = false;
+                } else {
+                    nextBtn.textContent = 'View Results';
+                    nextBtn.disabled = true;
+                }
+            } else {
+                nextBtn.textContent = 'Next Question';
+                nextBtn.disabled = userAnswers[currentQuestion] === undefined;
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                showQuestion(currentQuestion + 1);
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showResults() {
+            document.getElementById('quizArea').style.display = 'none';
+            document.getElementById('results').classList.add('show');
+            
+            const percentage = Math.round((score / quizData.length) * 100);
+            const passed = percentage >= 90;
+            
+            document.getElementById('scorePercent').textContent = percentage;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('totalCount').textContent = quizData.length;
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            scoreCircle.className = `score-circle ${passed ? 'pass' : 'fail'}`;
+            
+            const resultMessage = document.getElementById('resultMessage');
+            const badgeSection = document.getElementById('badgeSection');
+            
+            if (passed) {
+                resultMessage.textContent = '🎉 Level 001 Complete!';
+                badgeSection.innerHTML = `
+                    <div class="badge-earned">
+                        <h3>🎖️ FIELD AGENT STATUS EARNED</h3>
+                        <p>Exceptional work, Agent! You've completed the entire Beginner track and mastered practical AI foundations. You understand how AI works, how to prompt effectively, how to verify output, when to use AI, how to customize it, and how to work with files. You've earned the Field Agent badge and are officially cleared for Level 002 - Intermediate training!</p>
+                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);"><strong>🚀 Ready for Level 002?</strong><br>You'll learn to build Claude Skills, create Artifacts, use Projects, generate structured data, and integrate AI into sophisticated workflows.</p>
+                    </div>
+                `;
+            } else {
+                resultMessage.textContent = 'Mission Incomplete';
+                badgeSection.innerHTML = `
+                    <div class="badge-earned" style="background: linear-gradient(135deg, #e53935, #ef5350);">
+                        <h3>📚 Additional Training Required</h3>
+                        <p>You need 90% or higher to complete Level 001. Review Module 4 and focus on: the 3-question decision framework, when to use vs. skip AI, the two-part Custom Instructions structure, and file upload privacy guidelines. You're almost there!</p>
+                    </div>
+                `;
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            score = 0;
+            
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('startScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
