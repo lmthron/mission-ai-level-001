@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Module 3 Review Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .intro h2 {
+            color: #1B365D;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .concept-section {
+            margin-bottom: 35px;
+        }
+
+        .concept-title {
+            color: #1B365D;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #4A90E2;
+        }
+
+        .red-flag-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .red-flag-card {
+            background: #ffebee;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 3px solid #e53935;
+        }
+
+        .red-flag-card h4 {
+            color: #c62828;
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .red-flag-card h4::before {
+            content: "🚩";
+        }
+
+        .red-flag-card p {
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .strategy-box {
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #7CB342;
+        }
+
+        .strategy-box h4 {
+            color: #558b2f;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .strategy-box p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .strategy-box ol {
+            margin-top: 10px;
+            padding-left: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .stakes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stakes-card {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .low-stakes {
+            background: #e8f5e9;
+            border: 2px solid #7CB342;
+        }
+
+        .high-stakes {
+            background: #ffebee;
+            border: 2px solid #e53935;
+        }
+
+        .stakes-card h4 {
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .low-stakes h4 {
+            color: #558b2f;
+        }
+
+        .high-stakes h4 {
+            color: #c62828;
+        }
+
+        .stakes-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stakes-card li {
+            padding: 5px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+            font-size: 16px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #4A90E2, #357abd);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background: #7CB342;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-button:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px;
+            }
+
+            .red-flag-grid, .stakes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">📖</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Module 3 Review Guide</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>Understanding AI Output - What to Trust and Verify</h2>
+                <p>Review red flags, fact-checking strategies, and verification principles before taking your Module 3 checkpoint quiz. Critical thinking about AI output keeps you from trusting blindly.</p>
+            </div>
+
+            <!-- Core Problem -->
+            <div class="concept-section">
+                <div class="concept-title">The Core Problem</div>
+                
+                <div class="highlight-box">
+                    <strong>AI can be completely wrong while sounding completely right.</strong>
+                    <p>AI is incredibly good at sounding confident and authoritative. It presents information in clean, well-formatted text that looks professional. This creates a problem: AI can confidently state incorrect information. Remember from Module 1: AI predicts what words should come next based on patterns, not on what's actually true.</p>
+                </div>
+            </div>
+
+            <!-- Six Red Flags -->
+            <div class="concept-section">
+                <div class="concept-title">Six Red Flags - When AI Might Be Wrong</div>
+                
+                <div class="red-flag-grid">
+                    <div class="red-flag-card">
+                        <h4>Overly Specific Without Sources</h4>
+                        <p>"Studies show that 73% of customers prefer..." - Where's that from?</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <h4>Perfect Recall of Obscure Details</h4>
+                        <p>"In his 2018 interview with TechCrunch..." - Without a link, might be invented.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <h4>Exact Citations Without Links</h4>
+                        <p>"According to Journal of Applied Psychology, Vol. 45..." - Always verify.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <h4>Contradicts Itself</h4>
+                        <p>Says one thing in paragraph 2, opposite in paragraph 5.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <h4>Too Perfect of a Match</h4>
+                        <p>EXACTLY what you wanted with no nuance? Be suspicious. Real answers have caveats.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <h4>Note on Recent Events</h4>
+                        <p>Be cautious, though some AI tools can search for current information when needed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Five Strategies -->
+            <div class="concept-section">
+                <div class="concept-title">Five Fact-Checking Strategies</div>
+                
+                <div class="strategy-box">
+                    <h4>Strategy 1: "Does This Exist?" Check</h4>
+                    <ol>
+                        <li>Copy the exact claim</li>
+                        <li>Google it</li>
+                        <li>See if you find the actual source</li>
+                    </ol>
+                    <p style="margin-top: 10px;">If you find the report: ✅ Verified. If you find nothing: ❌ Made up.</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Strategy 2: "Multiple Sources" Check</h4>
+                    <p>Can you verify the claim in 2-3 other places? If sources disagree or you can't find confirmation, don't trust it.</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Strategy 3: "Common Sense" Check</h4>
+                    <p>Does this make logical sense? Example: "Schedule all meetings for 15 minutes to reduce meeting time by 50%" - Technically possible but practically useless.</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Strategy 4: "Ask It Again" Check</h4>
+                    <p>Try the same question in a new conversation. If AI gives wildly different answers, it's probably making things up.</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Strategy 5: "Ask for Sources" Check</h4>
+                    <p>Ask: "Where did you get this information? Provide links." If AI says "based on my training data," you need to verify yourself.</p>
+                </div>
+            </div>
+
+            <!-- High vs Low Stakes -->
+            <div class="concept-section">
+                <div class="concept-title">High-Stakes vs. Low-Stakes AI Use</div>
+                
+                <div class="stakes-grid">
+                    <div class="stakes-card low-stakes">
+                        <h4>Low-Stakes (verify if convenient)</h4>
+                        <ul>
+                            <li>• Brainstorming meeting agenda ideas</li>
+                            <li>• Drafting casual emails to colleagues</li>
+                            <li>• Presentation structure suggestions</li>
+                            <li>• Generating project name options</li>
+                        </ul>
+                    </div>
+                    <div class="stakes-card high-stakes">
+                        <h4>High-Stakes (ALWAYS verify)</h4>
+                        <ul>
+                            <li>• Facts/statistics shared externally</li>
+                            <li>• Legal, financial, or medical info</li>
+                            <li>• Customer-affecting decisions</li>
+                            <li>• Official documents</li>
+                            <li>• Technical specifications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>The Rule:</strong>
+                    <p>The more important the output, the more you need to verify it.</p>
+                </div>
+            </div>
+
+            <!-- What to Do When Wrong -->
+            <div class="concept-section">
+                <div class="concept-title">What to Do When AI Is Wrong</div>
+                
+                <div class="strategy-box">
+                    <h4>Option 1: Refine Your Prompt</h4>
+                    <p>Often, bad output means unclear instructions. Example: "This is too generic. Give me specific examples relevant to payment processing companies."</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Option 2: Start Over with More Context</h4>
+                    <p>Sometimes easier to start fresh with a better prompt than keep refining bad output.</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Option 3: Break It Into Smaller Pieces</h4>
+                    <p>First: "List the key points I should cover." Review the list. Then: "Using these points, draft the email."</p>
+                </div>
+
+                <div class="strategy-box">
+                    <h4>Option 4: Verify and Edit Yourself</h4>
+                    <p>Use AI as a starting point, not the final answer. Fact-check claims, add details AI doesn't know, adjust tone, fill gaps. You're the expert - AI is a tool.</p>
+                </div>
+            </div>
+
+            <!-- Key Takeaway -->
+            <div class="highlight-box">
+                <strong>🎯 Key Takeaway:</strong>
+                <p>AI can sound confident while being completely wrong. Always verify high-stakes information. Watch for red flags, use fact-checking strategies, and remember: bad output often means a bad prompt - refine your request, don't blame the AI. You're in charge - AI assists, you verify and decide.</p>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>Ready to Test Your Knowledge?</h3>
+                <p>You've reviewed the red flags and verification strategies. Now demonstrate your critical thinking about AI output.</p>
+                <a href=" https://lmthron.github.io/mission-ai-level-001/module3-quiz.html" class="quiz-button">Take Module 3 Quiz</a>
+                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">90% required to pass and earn Intelligence Analyst status 🎯</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cta-box {
+            background: linear-gradient(135deg, #4A90E2, #357abd);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background: #7CB342;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-button:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px;
+            }
+
+            .red-flag-grid, .stakes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</body>
+</html>
