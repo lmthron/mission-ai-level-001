@@ -34,6 +34,19 @@ Mission AI is our internal AI learning program designed to help team members und
 
 **Reward:** Field Operative Badge
 
+### Level 001 - Module 3: Understanding AI Output - What to Trust and What to Verify
+
+**Topics Covered:**
+- Recognizing AI hallucinations and fabricated information
+- Six red flags for when AI might be wrong
+- Five fact-checking strategies
+- High-stakes vs. low-stakes AI use
+- Critical evaluation of AI-generated content
+
+**Passing Score:** 90% (9 out of 10 questions)
+
+**Reward:** Intelligence Analyst Badge
+
 ## 🚀 How to Take a Quiz
 
 1. Click the quiz link above
