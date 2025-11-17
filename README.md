@@ -1,4 +1,4 @@
-# Mission AI: Level 001 Training Quizzes
+# Mission AI: Level 001 Review Guides & Training Quizzes
 
 Welcome, Agent! This repository contains checkpoint quizzes for Mission AI training program.
 
@@ -6,7 +6,7 @@ Welcome, Agent! This repository contains checkpoint quizzes for Mission AI train
 
 Mission AI is our internal AI learning program designed to help team members understand and effectively use AI tools like ChatGPT, Claude, and Copilot in their daily work.
 
-## 📋 Available Quizzes
+## 📋 Available Review Guides & Quizzes
 
 ### Level 001 - Module 1: What AI Actually Is (and Isn't)
 
