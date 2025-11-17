@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Level 001 - Module 3 Checkpoint</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .question-container {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-number {
+            color: #4A90E2;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1B365D;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            border-color: #4A90E2;
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: #4A90E2;
+            background: #e3f2fd;
+        }
+
+        .option.correct {
+            border-color: #7CB342;
+            background: #f1f8e9;
+        }
+
+        .option.incorrect {
+            border-color: #e53935;
+            background: #ffebee;
+        }
+
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            background: #4A90E2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .option.correct .option-letter {
+            background: #7CB342;
+        }
+
+        .option.incorrect .option-letter {
+            background: #e53935;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .feedback.correct {
+            background: #f1f8e9;
+            border-left: 4px solid #7CB342;
+            color: #33691e;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            border-left: 4px solid #e53935;
+            color: #b71c1c;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #4A90E2;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #357abd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #bdbdbd;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+        }
+
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-circle.pass {
+            background: linear-gradient(135deg, #7CB342, #9ccc65);
+            box-shadow: 0 8px 24px rgba(124, 179, 66, 0.4);
+        }
+
+        .score-circle.fail {
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            box-shadow: 0 8px 24px rgba(229, 57, 53, 0.4);
+        }
+
+        .score-label {
+            font-size: 16px;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .result-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1B365D;
+            margin: 20px 0;
+        }
+
+        .result-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .badge-earned {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #1B365D, #2a4a7a);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .badge-earned h3 {
+            margin-bottom: 10px;
+            color: #7CB342;
+        }
+
+        .start-screen {
+            text-align: center;
+        }
+
+        .start-screen h2 {
+            color: #1B365D;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .mission-brief {
+            background: #f8f9fa;
+            border-left: 4px solid #4A90E2;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 4px;
+            line-height: 1.8;
+        }
+
+        .mission-brief strong {
+            color: #1B365D;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4A90E2, #7CB342);
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .question {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">🎯</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Module 3 Checkpoint Quiz</p>
+        </div>
+
+        <div class="content">
+            <div id="startScreen" class="start-screen">
+                <h2>Critical Analysis Mission</h2>
+                <p class="intro">
+                    You've learned to recognize when AI might be wrong and how to verify output. Now demonstrate your ability to think critically about AI-generated information and apply fact-checking strategies.
+                </p>
+                
+                <div class="mission-brief">
+                    <strong>Mission Briefing:</strong><br>
+                    • 10 questions covering AI output evaluation and verification<br>
+                    • Focus on red flags, fact-checking strategies, and critical thinking<br>
+                    • You must score 90% or higher to pass<br>
+                    • You can retake the quiz if needed<br>
+                    • Think carefully about each scenario
+                </div>
+
+                <button class="btn-primary" onclick="startQuiz()">BEGIN MISSION</button>
+            </div>
+
+            <div id="quizArea" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+
+                <div id="questionsContainer"></div>
+
+                <div class="nav-buttons">
+                    <button class="btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                    <button class="btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+                </div>
+            </div>
+
+            <div id="results" class="results">
+                <div id="scoreCircle" class="score-circle">
+                    <div>
+                        <span id="scorePercent">0</span>%
+                        <div class="score-label">MISSION SCORE</div>
+                    </div>
+                </div>
+                
+                <div class="result-message" id="resultMessage"></div>
+                
+                <div class="result-details">
+                    <div class="result-item">
+                        <span>Questions Correct:</span>
+                        <strong id="correctCount">0</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Questions:</span>
+                        <strong id="totalCount">0</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Pass Threshold:</span>
+                        <strong>90%</strong>
+                    </div>
+                </div>
+
+                <div id="badgeSection"></div>
+
+                <button class="btn-primary" onclick="resetQuiz()">Retake Mission</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What is the core problem with AI-generated content according to Module 3?",
+                options: [
+                    "AI generates content too slowly for real-time business needs",
+                    "AI can only work with data it was explicitly trained on",
+                    "AI can be completely wrong while sounding completely right and confident",
+                    "AI produces content that is always technically accurate but lacks creativity"
+                ],
+                correct: 2,
+                feedback: {
+                    correct: "Perfect! The module emphasizes this critical insight: AI can sound authoritative and confident while being completely wrong. This is why verification matters.",
+                    incorrect: "Review Part 1. The key problem is that AI can be completely wrong while sounding completely right. It presents plausible-sounding information confidently, even when making things up."
+                }
+            },
+            {
+                question: "According to the module, which of these is a HIGH-stakes use case that ALWAYS requires verification?",
+                options: [
+                    "Brainstorming ideas for team meeting agenda topics",
+                    "Facts or statistics you'll share in an official customer-facing document",
+                    "Generating creative options for internal project naming",
+                    "Drafting a casual email to a colleague about lunch plans"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Correct! The module states high-stakes uses include: facts/statistics shared externally, anything affecting customers or business decisions, and information in official documents. Always verify these.",
+                    incorrect: "The module distinguishes high-stakes from low-stakes use. High-stakes includes: facts/data shared externally, legal/financial/medical info, anything affecting customers, official documents, and technical specs. Meeting agendas and casual emails are low-stakes."
+                }
+            },
+            {
+                question: "AI provides this statement: 'Studies show that 73% of customers prefer email communication over phone calls.' What red flag should you notice?",
+                options: [
+                    "The percentage is oddly specific and no source is cited",
+                    "The statement contradicts common business practices",
+                    "AI shouldn't be discussing customer preferences without context",
+                    "The claim is about recent research that AI couldn't have access to"
+                ],
+                correct: 0,
+                feedback: {
+                    correct: "Excellent! This is Red Flag #1 from the module: Overly specific without sources. AI often generates plausible-sounding statistics that aren't real. Where's this 73% from?",
+                    incorrect: "This is Red Flag #1: Overly specific without sources. The module warns: 'AI often generates plausible-sounding numbers that aren't real.' The specific percentage without a citation is the warning sign."
+                }
+            },
+            {
+                question: "Red Flag #6 warns that if AI gives you EXACTLY what you wanted with no ambiguity or nuance, you should be suspicious. Why?",
+                options: [
+                    "Perfect answers indicate AI is copying from a single source rather than synthesizing",
+                    "Real answers to complex questions usually have some 'it depends' or caveats",
+                    "AI should always provide multiple perspectives, not just one perfect answer",
+                    "Exact matches suggest AI has memorized the answer rather than reasoning about it"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Exactly! The module states: 'If AI gives you EXACTLY what you wanted with no ambiguity or nuance, be suspicious. Real answers usually have some \"it depends\" or caveats.' Perfection can be a warning sign.",
+                    incorrect: "Red Flag #6 is about unrealistic perfection. The module warns: 'Real answers usually have some \"it depends\" or caveats.' When dealing with complex real-world questions, some nuance or conditions are normal. Too-perfect answers without any caveats should make you suspicious."
+                }
+            },
+            {
+                question: "Strategy 1 in the module is the 'Does This Exist?' check. What does this strategy involve?",
+                options: [
+                    "Asking AI to provide links and verifying those links work correctly",
+                    "Checking if the claim appears in your company's internal knowledge base",
+                    "Copying the exact claim, Googling it, and seeing if you find the actual source",
+                    "Comparing AI's response to responses from other AI tools to find consensus"
+                ],
+                correct: 2,
+                feedback: {
+                    correct: "Perfect! The module teaches: '1. Copy the exact claim 2. Google it 3. See if you find the actual source.' If you find the report, it's verified. If you find nothing, it's made up.",
+                    incorrect: "Review Strategy 1 in Part 3. The process is: Copy the exact claim, Google it, see if you find the actual source. Example: If AI claims a McKinsey report says something, you Google that specific claim to verify the report exists and says what AI claimed."
+                }
+            },
+            {
+                question: "The module describes a 'Common Sense Check' with this example: 'To reduce meeting time by 50%, schedule all meetings for 15 minutes.' What's the issue?",
+                options: [
+                    "Fifteen minutes is too short for most productive meetings",
+                    "This is technically a solution but practically useless - it makes meetings shorter, not the total time spent",
+                    "AI should have suggested eliminating meetings entirely instead",
+                    "The math doesn't work out correctly for a 50% reduction"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Excellent! The module explains: This isn't reducing meeting time for the same work, just making meetings shorter (which might mean more meetings). AI gave a technically correct but practically useless answer.",
+                    incorrect: "The Common Sense Check looks at whether suggestions are practically useful, not just technically accurate. The issue isn't the meeting length itself - it's that shorter meetings for the same work likely means MORE meetings, not less total time. Red flag: Technically correct but practically useless."
+                }
+            },
+            {
+                question: "What does the 'Ask It Again' check (Strategy 4) help you identify?",
+                options: [
+                    "Whether AI's answers improve with multiple attempts at the same question",
+                    "If AI gives wildly different answers to the same question, it's probably making things up",
+                    "Whether your prompt was clear enough for AI to understand consistently",
+                    "If AI learns from your previous questions and provides better answers over time"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Correct! The module states: 'Try the same question in a new conversation. Does AI give you the same answer? If AI gives you wildly different answers to the same question, it's probably making things up.'",
+                    incorrect: "Strategy 4 is about consistency testing. If you ask the same factual question in two separate conversations and get very different answers, it suggests AI is generating plausible-sounding content rather than recalling verified information."
+                }
+            },
+            {
+                question: "According to Module 3, what's the proper approach when AI is wrong about something?",
+                options: [
+                    "Accept that AI has limitations and avoid using it for that type of task in the future",
+                    "Report the error to the AI company so they can fix their training data",
+                    "Recognize that bad output often means a bad prompt - refine your request and try again",
+                    "Switch to a different AI tool that might have better training data for your topic"
+                ],
+                correct: 2,
+                feedback: {
+                    correct: "Exactly! The module's Key Takeaway states: 'Bad output often means bad prompt - Refine your request, don't blame the AI.' Often you can get better results by improving your prompt.",
+                    incorrect: "The module teaches: 'Bad output often means bad prompt - Refine your request, don't blame the AI.' Before giving up, try refining your prompt with more context, breaking the task into steps, or being more specific about what you need."
+                }
+            },
+            {
+                question: "Red Flag #4 in the module warns about 'Exact citations without links.' Why is this a red flag?",
+                options: [
+                    "Citations should always be hyperlinked in modern digital communication",
+                    "AI loves to cite sources that sound real but don't exist, so citations need verification",
+                    "Exact citations indicate AI is plagiarizing from its training data",
+                    "Without links, you can't access the full context of the citation"
+                ],
+                correct: 1,
+                feedback: {
+                    correct: "Perfect! The module warns: 'AI loves to cite sources that sound real but don't exist. Always verify citations.' Just because AI provides a formal citation doesn't mean it's real.",
+                    incorrect: "Red Flag #4 is about fabricated sources. The module states: 'AI loves to cite sources that sound real but don't exist. Always verify citations.' The real case example shows how AI invented legal cases with realistic-sounding citations."
+                }
+            },
+            {
+                question: "The module teaches that 'The more important the output, the more you need to verify it.' Which scenario best demonstrates applying this principle?",
+                options: [
+                    "Verifying every single AI response regardless of how you'll use it",
+                    "Only verifying AI output when you're presenting to executives or external stakeholders",
+                    "Quickly checking AI's brainstorming ideas but thoroughly fact-checking statistics you'll include in a customer proposal",
+                    "Trusting AI for internal work but verifying everything for external communications"
+                ],
+                correct: 2,
+                feedback: {
+                    correct: "Excellent! This demonstrates the principle correctly: low-stakes brainstorming needs light verification, but high-stakes customer-facing facts require thorough checking. Match verification effort to potential impact.",
+                    incorrect: "The principle is about matching verification effort to stakes. Low-stakes (brainstorming, casual emails) can be verified lightly. High-stakes (customer-facing facts, official documents, business decisions) require thorough verification. It's not about internal vs. external - it's about potential impact."
+                }
+            }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let score = 0;
+
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizArea').style.display = 'block';
+            renderQuestions();
+            showQuestion(0);
+            updateProgress();
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            quizData.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.id = `question-${index}`;
+                
+                const optionsHTML = q.options.map((option, optIndex) => `
+                    <div class="option" onclick="selectAnswer(${index}, ${optIndex})">
+                        <span class="option-letter">${String.fromCharCode(65 + optIndex)}</span>
+                        <span>${option}</span>
+                    </div>
+                `).join('');
+
+                questionDiv.innerHTML = `
+                    <div class="question-number">Question ${index + 1} of ${quizData.length}</div>
+                    <div class="question">${q.question}</div>
+                    <div class="options" id="options-${index}">
+                        ${optionsHTML}
+                    </div>
+                    <div class="feedback" id="feedback-${index}"></div>
+                `;
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function showQuestion(index) {
+            document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+            document.getElementById(`question-${index}`).classList.add('active');
+            
+            currentQuestion = index;
+            updateButtons();
+            updateProgress();
+        }
+
+        function selectAnswer(questionIndex, answerIndex) {
+            if (userAnswers[questionIndex] !== undefined) return;
+
+            userAnswers[questionIndex] = answerIndex;
+            
+            const optionsContainer = document.getElementById(`options-${questionIndex}`);
+            const options = optionsContainer.querySelectorAll('.option');
+            const feedbackDiv = document.getElementById(`feedback-${questionIndex}`);
+            
+            const isCorrect = answerIndex === quizData[questionIndex].correct;
+            
+            options.forEach((option, idx) => {
+                if (idx === quizData[questionIndex].correct) {
+                    option.classList.add('correct');
+                } else if (idx === answerIndex) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            feedbackDiv.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedbackDiv.innerHTML = isCorrect ? 
+                `✓ ${quizData[questionIndex].feedback.correct}` : 
+                `✗ ${quizData[questionIndex].feedback.incorrect}`;
+
+            if (isCorrect) score++;
+            
+            updateButtons();
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                if (userAnswers[currentQuestion] !== undefined) {
+                    nextBtn.textContent = 'View Results';
+                    nextBtn.disabled = false;
+                } else {
+                    nextBtn.textContent = 'View Results';
+                    nextBtn.disabled = true;
+                }
+            } else {
+                nextBtn.textContent = 'Next Question';
+                nextBtn.disabled = userAnswers[currentQuestion] === undefined;
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                showQuestion(currentQuestion + 1);
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showResults() {
+            document.getElementById('quizArea').style.display = 'none';
+            document.getElementById('results').classList.add('show');
+            
+            const percentage = Math.round((score / quizData.length) * 100);
+            const passed = percentage >= 90;
+            
+            document.getElementById('scorePercent').textContent = percentage;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('totalCount').textContent = quizData.length;
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            scoreCircle.className = `score-circle ${passed ? 'pass' : 'fail'}`;
+            
+            const resultMessage = document.getElementById('resultMessage');
+            const badgeSection = document.getElementById('badgeSection');
+            
+            if (passed) {
+                resultMessage.textContent = '🎉 Mission Complete!';
+                badgeSection.innerHTML = `
+                    <div class="badge-earned">
+                        <h3>🏅 INTELLIGENCE ANALYST STATUS EARNED</h3>
+                        <p>Exceptional work, Agent! You've demonstrated critical thinking skills and the ability to evaluate AI output with a discerning eye. You understand when to trust AI and when to verify. You've earned the Intelligence Analyst badge and are cleared to proceed to Module 4.</p>
+                    </div>
+                `;
+            } else {
+                resultMessage.textContent = 'Mission Incomplete';
+                badgeSection.innerHTML = `
+                    <div class="badge-earned" style="background: linear-gradient(135deg, #e53935, #ef5350);">
+                        <h3>📚 Additional Training Required</h3>
+                        <p>You need 90% or higher to pass. Review Module 3 and focus on the six red flags for when AI might be wrong and the five fact-checking strategies. Understanding how to verify AI output is critical for safe and effective AI use!</p>
+                    </div>
+                `;
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            score = 0;
+            
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('startScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
