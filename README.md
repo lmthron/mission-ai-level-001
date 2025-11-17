@@ -47,6 +47,20 @@ Mission AI is our internal AI learning program designed to help team members und
 
 **Reward:** Intelligence Analyst Badge
 
+### Level 001 - Module 4: Practical AI Foundations
+
+**Topics Covered:**
+- When to use AI (and when to skip it)
+- The three-question decision framework
+- Custom Instructions - teaching AI your preferences
+- Working with files (PDFs, images, documents)
+- Privacy and security considerations for uploads
+- Enterprise protections and best practices
+
+**Passing Score:** 90% (9 out of 10 questions)
+
+**Reward:** Field Agent Badge 🎖️ (Completes Level 001 - Beginner Track)
+
 ## 🚀 How to Take a Quiz
 
 1. Click the quiz link above
