@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Module 2 Review Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .intro h2 {
+            color: #1B365D;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .concept-section {
+            margin-bottom: 35px;
+        }
+
+        .concept-title {
+            color: #1B365D;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #4A90E2;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .framework-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #4A90E2;
+        }
+
+        .framework-card h4 {
+            color: #1B365D;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .framework-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .example-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #4A90E2;
+        }
+
+        .example-box h4 {
+            color: #1B365D;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .before, .after {
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .before {
+            background: #ffebee;
+            border-left: 3px solid #e53935;
+        }
+
+        .after {
+            background: #f1f8e9;
+            border-left: 3px solid #7CB342;
+        }
+
+        .before strong, .after strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .before strong {
+            color: #c62828;
+        }
+
+        .after strong {
+            color: #558b2f;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .concept-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid #7CB342;
+        }
+
+        .concept-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .concept-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .concept-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7CB342;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+            font-size: 16px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #4A90E2, #357abd);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background: #7CB342;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-button:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px;
+            }
+
+            .framework-grid, .before-after {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">📖</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Module 2 Review Guide</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>The Anatomy of a Good Prompt</h2>
+                <p>Review the four-element framework and common mistakes before taking your Module 2 checkpoint quiz. Mastering prompting is the key to getting useful AI results.</p>
+            </div>
+
+            <!-- Four Elements -->
+            <div class="concept-section">
+                <div class="concept-title">The Four-Element Framework</div>
+                
+                <div class="framework-grid">
+                    <div class="framework-card">
+                        <h4>1. Context</h4>
+                        <p>Tell AI what it needs to know to understand your request. What's the situation? Who's the audience? What's the purpose?</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>2. Specificity</h4>
+                        <p>Be clear about exactly what you want. What format? What length? What should be included?</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>3. Constraints</h4>
+                        <p>What should AI include or avoid? Set boundaries so AI doesn't make wrong assumptions.</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>4. Format</h4>
+                        <p>How should the output be structured? Specify length, style, and organization.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Remember:</strong>
+                    <p>When you provide these four things, AI can give you exactly what you need. The more specific and clear you are, the better the results.</p>
+                </div>
+            </div>
+
+            <!-- Before and After Examples -->
+            <div class="concept-section">
+                <div class="concept-title">Before & After: Applying the Framework</div>
+                
+                <div class="example-box">
+                    <h4>Example 1: Email Request</h4>
+                    <div class="before-after">
+                        <div class="before">
+                            <strong>❌ Vague</strong>
+                            <div class="code-block">Write an email about the delay</div>
+                        </div>
+                        <div class="after">
+                            <strong>✓ Specific</strong>
+                            <div class="code-block">Write an email to a customer explaining that their order will be delayed by 3 days due to a supplier issue. The customer has been waiting 2 weeks already and sent a frustrated message this morning.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: Data Analysis</h4>
+                    <div class="before-after">
+                        <div class="before">
+                            <strong>❌ Vague</strong>
+                            <div class="code-block">What does this data show?</div>
+                        </div>
+                        <div class="after">
+                            <strong>✓ Specific</strong>
+                            <div class="code-block">Analyze this sales data from Q3. Tell me:
+1. Which product category had the highest growth?
+2. Are there any concerning trends?
+3. What should we investigate further?
+
+Present findings as bullet points with the actual numbers included.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Mistakes -->
+            <div class="concept-section">
+                <div class="concept-title">Common Prompting Mistakes to Avoid</div>
+                
+                <div class="concept-box">
+                    <ul>
+                        <li><strong>Mistake #1: Asking for everything at once</strong> - Instead: Break it into steps. First get a draft, then refine it.</li>
+                        <li><strong>Mistake #2: Not providing examples</strong> - Instead: Show what "nicely" or "professional" means with concrete examples.</li>
+                        <li><strong>Mistake #3: Assuming AI knows your context</strong> - Instead: Be explicit. AI doesn't know what "this" is or what "fixed" means.</li>
+                        <li><strong>Mistake #4: Giving up after bad output</strong> - Instead: Refine your prompt and try again. Bad output often means unclear instructions.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Iteration -->
+            <div class="concept-section">
+                <div class="concept-title">Refining Through Iteration</div>
+                
+                <div class="concept-box">
+                    <p style="color: #555; line-height: 1.7; margin-bottom: 15px;">AI rarely gets it perfect on the first try. Learn to refine by telling AI specifically what to fix:</p>
+                    <ul>
+                        <li>"This is too formal. Make it more conversational and friendly."</li>
+                        <li>"This is good, but add a section about next steps and who's responsible for what."</li>
+                        <li>"Make this half as long and focus only on the budget concerns, not the timeline."</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Takeaway -->
+            <div class="highlight-box">
+                <strong>🎯 Key Takeaway:</strong>
+                <p>The difference between vague and specific prompts is massive. Use the four elements (Context, Specificity, Constraints, Format) and iterate until you get what you need. AI is a tool you shape through feedback.</p>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>Ready to Test Your Knowledge?</h3>
+                <p>You've reviewed the four-element framework and common mistakes. Now demonstrate your prompt engineering skills.</p>
+                <a href="https://lmthron.github.io/mission-ai-level-001/module2-quiz.html" class="quiz-button">Take Module 2 Quiz</a>
+                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">90% required to pass and earn Field Operative status 🎯</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
