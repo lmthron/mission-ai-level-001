@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Level 001 - Complete Review Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border: 4px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 18px;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .intro-section h2 {
+            color: #1B365D;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .intro-section p {
+            color: #666;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 15px;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: #7CB342;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .download-button:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        .module-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 6px solid #4A90E2;
+            page-break-inside: avoid;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .module-number {
+            width: 50px;
+            height: 50px;
+            background: #4A90E2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .module-title {
+            flex: 1;
+        }
+
+        .module-title h3 {
+            color: #1B365D;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .module-title .badge {
+            color: #7CB342;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .concept-group {
+            margin-bottom: 25px;
+        }
+
+        .concept-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .concept-title {
+            color: #1B365D;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .concept-title::before {
+            content: "▸";
+            color: #4A90E2;
+            font-size: 20px;
+        }
+
+        .concept-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #7CB342;
+        }
+
+        .concept-box h4 {
+            color: #1B365D;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .concept-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .concept-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .concept-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .concept-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7CB342;
+            font-weight: bold;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .framework-card {
+            background: white;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 3px solid #4A90E2;
+        }
+
+        .framework-card h4 {
+            color: #1B365D;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .framework-card p {
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .myth-reality {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .myth-box, .reality-box {
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .myth-box {
+            background: #ffebee;
+            border-left: 3px solid #e53935;
+        }
+
+        .reality-box {
+            background: #f1f8e9;
+            border-left: 3px solid #7CB342;
+        }
+
+        .myth-box strong, .reality-box strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .myth-box strong {
+            color: #c62828;
+        }
+
+        .reality-box strong {
+            color: #558b2f;
+        }
+
+        .myth-box p, .reality-box p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+            font-size: 15px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            line-height: 1.6;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .red-flag-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .red-flag-card {
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #e53935;
+        }
+
+        .red-flag-card h4 {
+            color: #c62828;
+            margin-bottom: 6px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .red-flag-card h4::before {
+            content: "🚩";
+        }
+
+        .red-flag-card p {
+            color: #555;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+
+        .strategy-box {
+            background: #f1f8e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #7CB342;
+        }
+
+        .strategy-box h4 {
+            color: #558b2f;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .strategy-box p {
+            color: #555;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .header {
+                background: #1B365D !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .download-button {
+                display: none;
+            }
+
+            .module-section {
+                page-break-inside: avoid;
+                background: #f8f9fa !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .concept-box, .framework-card, .myth-box, .reality-box, 
+            .red-flag-card, .strategy-box, .highlight-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .framework-grid, .myth-reality, .red-flag-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">📚</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Complete Reference Guide - Beginner Track</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-section">
+                <h2>Your Complete AI Fundamentals Reference</h2>
+                <p>
+                    This comprehensive guide covers all key concepts from Level 001. Use it to review before quizzes, refresh your knowledge, or as a quick reference while working with AI tools. Save this page as a PDF for offline access.
+                </p>
+                <button class="download-button" onclick="window.print()">📥 Save as PDF</button>
+                <p style="margin-top: 10px; font-size: 14px; color: #999;">Click "Save as PDF" in your browser's print dialog</p>
+            </div>
+
+            <!-- MODULE 1 -->
+            <div class="module-section">
+                <div class="module-header">
+                    <div class="module-number">1</div>
+                    <div class="module-title">
+                        <h3>What AI Actually Is (and Isn't)</h3>
+                        <span class="badge">🎯 Foundation Concepts</span>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Understanding Large Language Models (LLMs)</div>
+                    <div class="concept-box">
+                        <h4>The Autocomplete Analogy</h4>
+                        <p>Think of an LLM like autocomplete on steroids. Your phone predicts the next word when texting - LLMs do that with billions of examples learned from massive amounts of text.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>The Library Analogy</h4>
+                        <p>Imagine someone who has read every book in a massive library but doesn't actually understand the world. They can tell you what words usually come after other words, but they're not "thinking" like humans. They're pattern matching at an incredibly sophisticated level.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Key Insights</h4>
+                        <ul>
+                            <li>AI is very good at tasks involving language patterns (writing, summarizing, formatting, explaining)</li>
+                            <li>AI doesn't "know" things the way you do (it can't fact-check itself or know what's true)</li>
+                            <li>AI works best when you give it clear instructions and context</li>
+                            <li>AI predicts likely responses based on patterns, not on truth</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">What AI Can Do Well</div>
+                    <div class="concept-box">
+                        <ul>
+                            <li><strong>Summarize and synthesize:</strong> Process multiple sources into common themes</li>
+                            <li><strong>Draft and edit text:</strong> Create professional responses, adjust tone and style</li>
+                            <li><strong>Explain complex concepts:</strong> Break down technical topics into simple language</li>
+                            <li><strong>Generate options:</strong> Provide multiple alternatives and variations</li>
+                            <li><strong>Format and restructure:</strong> Transform notes into organized lists or tables</li>
+                            <li><strong>Answer based on provided information:</strong> Extract insights from documents you share</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">What AI Cannot Do</div>
+                    <div class="concept-box">
+                        <ul>
+                            <li><strong>Replace human judgment:</strong> Doesn't know company policies, customer history, or appropriate context</li>
+                            <li><strong>Guarantee accuracy:</strong> Can confidently state wrong information (hallucinations)</li>
+                            <li><strong>Understand nuance perfectly:</strong> May miss sarcasm, cultural context, emotional weight</li>
+                            <li><strong>Make ethical decisions:</strong> Will do what you ask - you decide if it's appropriate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Common Misconceptions</div>
+                    <div class="myth-reality">
+                        <div class="myth-box">
+                            <strong>❌ Myth</strong>
+                            <p>AI is thinking and understanding like a human</p>
+                        </div>
+                        <div class="reality-box">
+                            <strong>✓ Reality</strong>
+                            <p>AI is predicting likely responses based on patterns in training data</p>
+                        </div>
+                    </div>
+                    <div class="myth-reality">
+                        <div class="myth-box">
+                            <strong>❌ Myth</strong>
+                            <p>If AI says it confidently, it must be true</p>
+                        </div>
+                        <div class="reality-box">
+                            <strong>✓ Reality</strong>
+                            <p>AI has no concept of truth. Generates plausible text regardless of accuracy</p>
+                        </div>
+                    </div>
+                    <div class="myth-reality">
+                        <div class="myth-box">
+                            <strong>❌ Myth</strong>
+                            <p>AI will replace my job</p>
+                        </div>
+                        <div class="reality-box">
+                            <strong>✓ Reality</strong>
+                            <p>AI is a tool for efficiency. Your judgment, context, and expertise remain essential</p>
+                        </div>
+                    </div>
+                    <div class="myth-reality">
+                        <div class="myth-box">
+                            <strong>❌ Myth</strong>
+                            <p>I need to be technical to use AI</p>
+                        </div>
+                        <div class="reality-box">
+                            <strong>✓ Reality</strong>
+                            <p>If you can type a question or request, you can use AI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🎯 Module 1 Key Takeaway:</strong>
+                    <p>AI is a powerful tool for language-based tasks, but it's pattern matching, not thinking. You're still in charge - AI assists, you verify and decide.</p>
+                </div>
+            </div>
+
+            <!-- MODULE 2 -->
+            <div class="module-section">
+                <div class="module-header">
+                    <div class="module-number">2</div>
+                    <div class="module-title">
+                        <h3>The Anatomy of a Good Prompt</h3>
+                        <span class="badge">🎯 Prompt Engineering</span>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">The Four-Element Framework</div>
+                    <div class="framework-grid">
+                        <div class="framework-card">
+                            <h4>1. Context</h4>
+                            <p>What's the situation? Who's the audience? What's the purpose?</p>
+                        </div>
+                        <div class="framework-card">
+                            <h4>2. Specificity</h4>
+                            <p>Exactly what do you want? What format? What length?</p>
+                        </div>
+                        <div class="framework-card">
+                            <h4>3. Constraints</h4>
+                            <p>What should be included? What should be avoided?</p>
+                        </div>
+                        <div class="framework-card">
+                            <h4>4. Format</h4>
+                            <p>How should output be structured? Length, style, organization?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Common Prompting Mistakes</div>
+                    <div class="concept-box">
+                        <ul>
+                            <li><strong>Asking for everything at once:</strong> Break complex requests into steps - first draft, then refine</li>
+                            <li><strong>Not providing examples:</strong> Show what "nicely" or "professional" means with concrete examples</li>
+                            <li><strong>Assuming AI knows your context:</strong> Be explicit - AI doesn't know what "this" is or what "fixed" means</li>
+                            <li><strong>Giving up after bad output:</strong> Refine your prompt and try again - bad output often means unclear instructions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Refining Through Iteration</div>
+                    <div class="concept-box">
+                        <p>AI rarely gets it perfect on the first try. Tell AI specifically what to fix:</p>
+                        <ul>
+                            <li>"This is too formal. Make it more conversational and friendly."</li>
+                            <li>"Add a section about next steps and who's responsible for what."</li>
+                            <li>"Make this half as long and focus only on budget concerns, not timeline."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🎯 Module 2 Key Takeaway:</strong>
+                    <p>The difference between vague and specific prompts is massive. Use the four elements and iterate until you get what you need. AI is a tool you shape through feedback.</p>
+                </div>
+            </div>
+
+            <!-- MODULE 3 -->
+            <div class="module-section">
+                <div class="module-header">
+                    <div class="module-number">3</div>
+                    <div class="module-title">
+                        <h3>Understanding AI Output - What to Trust and Verify</h3>
+                        <span class="badge">🎯 Critical Evaluation</span>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">The Core Problem</div>
+                    <div class="highlight-box">
+                        <strong>AI can be completely wrong while sounding completely right.</strong>
+                        <p>AI is incredibly good at sounding confident and authoritative. This creates a problem: it can confidently state incorrect information. AI predicts what words should come next based on patterns, not on what's actually true.</p>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Six Red Flags - When AI Might Be Wrong</div>
+                    <div class="red-flag-grid">
+                        <div class="red-flag-card">
+                            <h4>Overly Specific Without Sources</h4>
+                            <p>"73% of customers prefer..." - Where's that from?</p>
+                        </div>
+                        <div class="red-flag-card">
+                            <h4>Perfect Recall of Obscure Details</h4>
+                            <p>Specific quotes or dates without verifiable links</p>
+                        </div>
+                        <div class="red-flag-card">
+                            <h4>Exact Citations Without Links</h4>
+                            <p>"According to Journal X, Vol. 45..." - Always verify</p>
+                        </div>
+                        <div class="red-flag-card">
+                            <h4>Contradicts Itself</h4>
+                            <p>Says one thing, then opposite later in response</p>
+                        </div>
+                        <div class="red-flag-card">
+                            <h4>Too Perfect of a Match</h4>
+                            <p>EXACTLY what you wanted with no nuance? Be suspicious</p>
+                        </div>
+                        <div class="red-flag-card">
+                            <h4>Note on Recent Events</h4>
+                            <p>Be cautious, though some AI tools can search for current info</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Five Fact-Checking Strategies</div>
+                    <div class="strategy-box">
+                        <h4>1. "Does This Exist?" Check</h4>
+                        <p>Copy the exact claim → Google it → See if you find the actual source</p>
+                    </div>
+                    <div class="strategy-box">
+                        <h4>2. "Multiple Sources" Check</h4>
+                        <p>Can you verify the claim in 2-3 other places? If sources disagree, don't trust it</p>
+                    </div>
+                    <div class="strategy-box">
+                        <h4>3. "Common Sense" Check</h4>
+                        <p>Does this make logical sense or is it technically correct but practically useless?</p>
+                    </div>
+                    <div class="strategy-box">
+                        <h4>4. "Ask It Again" Check</h4>
+                        <p>Try same question in new conversation. Wildly different answers? Probably making things up</p>
+                    </div>
+                    <div class="strategy-box">
+                        <h4>5. "Ask for Sources" Check</h4>
+                        <p>Request links. If AI says "based on training data," verify yourself</p>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">High-Stakes vs. Low-Stakes</div>
+                    <div class="framework-grid">
+                        <div class="framework-card" style="background: #f1f8e9; border-left: 3px solid #7CB342;">
+                            <h4>Low-Stakes (verify if convenient)</h4>
+                            <p>• Brainstorming ideas<br>• Casual colleague emails<br>• Presentation structure<br>• Project name options</p>
+                        </div>
+                        <div class="framework-card" style="background: #ffebee; border-left: 3px solid #e53935;">
+                            <h4>High-Stakes (ALWAYS verify)</h4>
+                            <p>• Facts shared externally<br>• Legal/financial/medical info<br>• Customer decisions<br>• Official documents<br>• Technical specs</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>The Rule:</strong>
+                        <p>The more important the output, the more you need to verify it.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🎯 Module 3 Key Takeaway:</strong>
+                    <p>AI can sound confident while being wrong. Always verify high-stakes information. Watch for red flags, use fact-checking strategies. Bad output often means a bad prompt - refine your request.</p>
+                </div>
+            </div>
+
+            <!-- MODULE 4 -->
+            <div class="module-section">
+                <div class="module-header">
+                    <div class="module-number">4</div>
+                    <div class="module-title">
+                        <h3>Practical AI Foundations</h3>
+                        <span class="badge">🎯 Application & Tools</span>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">The Three-Question Decision Framework</div>
+                    <div class="framework-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="framework-card">
+                            <h4>1. Is it repetitive?</h4>
+                            <p>Yes → Good for AI<br>No → Maybe not worth setup</p>
+                        </div>
+                        <div class="framework-card">
+                            <h4>2. Would explaining take less time than doing?</h4>
+                            <p>Yes → AI might help<br>No → Just do it yourself</p>
+                        </div>
+                        <div class="framework-card">
+                            <h4>3. Can I verify output?</h4>
+                            <p>Yes → AI can help<br>No → Too risky</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>Decision Rule:</strong>
+                        <p>If all three are "Yes" → Use AI. If two or more are "No" → Skip AI.</p>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">When to Use AI vs. When to Skip</div>
+                    <div class="framework-grid">
+                        <div class="framework-card" style="background: #f1f8e9; border-left: 3px solid #7CB342;">
+                            <h4>✅ AI Saves Time When:</h4>
+                            <p style="font-size: 13px;">• Tasks are repetitive<br>• Time-consuming but straightforward<br>• Need multiple options<br>• Not sure how to start<br>• Format matters more than perfect wording</p>
+                        </div>
+                        <div class="framework-card" style="background: #ffebee; border-left: 3px solid #e53935;">
+                            <h4>❌ Skip AI When:</h4>
+                            <p style="font-size: 13px;">• Quicker to do yourself<br>• Personal/creative work where your voice matters<br>• You're the only expert and can't verify</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Custom Instructions</div>
+                    <div class="concept-box">
+                        <h4>Purpose</h4>
+                        <p>Set your default preferences once. AI remembers and applies them automatically to every conversation.</p>
+                    </div>
+                    <div class="framework-grid">
+                        <div class="framework-card">
+                            <h4>Part 1: About You</h4>
+                            <p>• Your role and context<br>• Who you work with<br>• Type of work you do<br>• Your typical audiences</p>
+                        </div>
+                        <div class="framework-card">
+                            <h4>Part 2: How to Respond</h4>
+                            <p>• Format preferences<br>• Tone (formal, casual, technical)<br>• When to ask questions<br>• Response length and style</p>
+                        </div>
+                    </div>
+                    <div class="concept-box">
+                        <p><strong style="color: #7CB342;">✓ Include:</strong> Broad preferences applying to most conversations</p>
+                        <p><strong style="color: #e53935;">✗ Don't Include:</strong> Temporary projects, detailed task procedures, changing priorities</p>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Working with Files</div>
+                    <div class="concept-box">
+                        <h4>Supported File Types</h4>
+                        <ul>
+                            <li><strong>PDFs:</strong> Reports, whitepapers, documentation</li>
+                            <li><strong>Images:</strong> Screenshots, photos, charts, diagrams</li>
+                            <li><strong>Documents:</strong> Word files, PowerPoint slides</li>
+                            <li><strong>Spreadsheets:</strong> Excel, CSV files</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>How to Use Files</h4>
+                        <p>Don't copy-paste everything. Upload the file and ask specific questions:</p>
+                        <ul>
+                            <li>Upload a report → "What are the top 3 findings?"</li>
+                            <li>Upload a screenshot → "What does this error mean?"</li>
+                            <li>Upload a chart → "Explain what this graph is showing"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-group">
+                    <div class="concept-title">Privacy & Security</div>
+                    <div class="concept-box">
+                        <h4>❌ NEVER Upload:</h4>
+                        <ul>
+                            <li>Passwords, API keys, or credentials</li>
+                            <li>Authentication tokens or security certificates</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>⚠️ Use Caution With:</h4>
+                        <ul>
+                            <li>Customer personal information (names, emails, payment details)</li>
+                            <li>Confidential financial data</li>
+                            <li>Internal security documentation</li>
+                            <li>Employee personal information</li>
+                            <li>Anything marked "confidential"</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>✅ Best Practices:</h4>
+                        <ul>
+                            <li>Follow company policy about AI uploads</li>
+                            <li>Only upload what's necessary for the task</li>
+                            <li>Anonymize when possible</li>
+                            <li>When in doubt, ask your manager or IT/Security</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>Enterprise Protections:</strong>
+                        <p>While Enterprise AI provides stronger protections (data not used for training, organizational boundaries), good security habits still matter. You might accidentally use a personal account instead of your work account.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🎯 Module 4 Key Takeaway:</strong>
+                    <p>Use the three-question framework to decide when AI is worth the effort. Set Custom Instructions once to save time. Upload files to work with real documents. Always follow privacy guidelines.</p>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="module-section" style="background: linear-gradient(135deg, #1B365D, #2a4a7a); color: white; border-left: none;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h3 style="color: #7CB342; font-size: 24px; margin-bottom: 20px;">Quick Reference Guide</h3>
+                    <p style="opacity: 0.9;">Essential concepts at a glance</p>
+                </div>
+
+                <div class="framework-grid">
+                    <div class="framework-card" style="background: rgba(255,255,255,0.15); border-left: 3px solid #4A90E2; color: white;">
+                        <h4 style="color: #4A90E2;">How AI Works</h4>
+                        <p style="color: white; font-size: 13px;">• Pattern matching from training data<br>• Not thinking or understanding<br>• No concept of truth<br>• Can sound confident while wrong</p>
+                    </div>
+                    <div class="framework-card" style="background: rgba(255,255,255,0.15); border-left: 3px solid #4A90E2; color: white;">
+                        <h4 style="color: #4A90E2;">Writing Good Prompts</h4>
+                        <p style="color: white; font-size: 13px;">• Provide context<br>• Be specific<br>• Set constraints<br>• Specify format<br>• Iterate and refine</p>
+                    </div>
+                    <div class="framework-card" style="background: rgba(255,255,255,0.15); border-left: 3px solid #4A90E2; color: white;">
+                        <h4 style="color: #4A90E2;">Verifying Output</h4>
+                        <p style="color: white; font-size: 13px;">• Watch for red flags<br>• Google specific claims<br>• Check multiple sources<br>• Use common sense<br>• Verify high-stakes info</p>
+                    </div>
+                    <div class="framework-card" style="background: rgba(255,255,255,0.15); border-left: 3px solid #4A90E2; color: white;">
+                        <h4 style="color: #4A90E2;">When to Use AI</h4>
+                        <p style="color: white; font-size: 13px;">• Repetitive tasks<br>• Time-consuming work<br>• Need multiple options<br>• Format matters<br>• Can verify output</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: #f1f8e9; border-radius: 12px; border: 2px solid #7CB342;">
+                <h3 style="color: #1B365D; margin-bottom: 15px; font-size: 24px;">🎖️ Congratulations, Field Agent!</h3>
+                <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">You've completed Level 001 and mastered AI fundamentals. You're ready to apply these skills in your daily work and advance to Level 002 - Intermediate training.</p>
+                <button class="download-button" onclick="window.print()" style="margin-top: 15px;">📥 Save This Guide as PDF</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
