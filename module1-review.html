@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission AI: Module 1 Review Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1B365D;
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-bottom: 4px solid #7CB342;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid #4A90E2;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .intro h2 {
+            color: #1B365D;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .concept-section {
+            margin-bottom: 35px;
+        }
+
+        .concept-title {
+            color: #1B365D;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #4A90E2;
+        }
+
+        .concept-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid #7CB342;
+        }
+
+        .concept-box h4 {
+            color: #1B365D;
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .concept-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .concept-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .concept-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .concept-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7CB342;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+            font-size: 16px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        .myth-reality {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .myth-box, .reality-box {
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .myth-box {
+            background: #ffebee;
+            border-left: 3px solid #e53935;
+        }
+
+        .reality-box {
+            background: #f1f8e9;
+            border-left: 3px solid #7CB342;
+        }
+
+        .myth-box strong, .reality-box strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .myth-box strong {
+            color: #c62828;
+        }
+
+        .reality-box strong {
+            color: #558b2f;
+        }
+
+        .myth-box p, .reality-box p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #4A90E2, #357abd);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background: #7CB342;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-button:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px;
+            }
+
+            .myth-reality {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge-icon">📖</div>
+            <h1>MISSION AI: LEVEL 001</h1>
+            <p class="subtitle">Module 1 Review Guide</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>What AI Actually Is (and Isn't)</h2>
+                <p>Review these key concepts before taking your Module 1 checkpoint quiz. Understanding these fundamentals is essential for using AI effectively and safely.</p>
+            </div>
+
+            <!-- Understanding LLMs -->
+            <div class="concept-section">
+                <div class="concept-title">Understanding Large Language Models (LLMs)</div>
+                
+                <div class="concept-box">
+                    <h4>The Autocomplete Analogy</h4>
+                    <p>Think of an LLM like autocomplete on steroids. Your phone predicts the next word when texting - LLMs do that with billions of examples to learn from.</p>
+                </div>
+
+                <div class="concept-box">
+                    <h4>The Library Analogy</h4>
+                    <p>Imagine someone who has read every book in a massive library but doesn't actually understand the world. They can tell you what words usually come after other words and what information typically appears together, but they're not "thinking" the way humans do. They're pattern matching at an incredibly sophisticated level.</p>
+                </div>
+
+                <div class="concept-box">
+                    <h4>What This Means for You</h4>
+                    <ul>
+                        <li>AI is very good at tasks involving language patterns (writing, summarizing, formatting, explaining)</li>
+                        <li>AI doesn't "know" things the way you do (it can't fact-check itself or know what's true)</li>
+                        <li>AI works best when you give it clear instructions and context</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- What AI Can Do -->
+            <div class="concept-section">
+                <div class="concept-title">What AI Can Do Well</div>
+                
+                <div class="concept-box">
+                    <ul>
+                        <li><strong>Summarize and synthesize information:</strong> "Take these 10 customer emails and give me the common themes"</li>
+                        <li><strong>Draft and edit text:</strong> "Write a professional response to this complaint email"</li>
+                        <li><strong>Explain complex concepts:</strong> "Explain blockchain like I'm a 10-year-old"</li>
+                        <li><strong>Generate options and ideas:</strong> "Give me 5 different subject lines for this email"</li>
+                        <li><strong>Format and restructure information:</strong> "Turn these notes into a bulleted list organized by priority"</li>
+                        <li><strong>Answer questions based on information you provide:</strong> "Based on this report, what were the top 3 concerns?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- What AI Cannot Do -->
+            <div class="concept-section">
+                <div class="concept-title">What AI Cannot Do (Or Shouldn't)</div>
+                
+                <div class="concept-box">
+                    <ul>
+                        <li><strong>Replace human judgment:</strong> AI doesn't know your company policies, your customer's history, or what's appropriate in your context</li>
+                        <li><strong>Guarantee accuracy:</strong> AI can confidently state wrong information (called "hallucinations"). Always verify important facts</li>
+                        <li><strong>Understand nuance and emotion perfectly:</strong> AI can miss sarcasm, cultural context, or the emotional weight of a situation</li>
+                        <li><strong>Make ethical decisions:</strong> AI will do what you ask. It's your job to decide if what you're asking is appropriate</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Common Misconceptions -->
+            <div class="concept-section">
+                <div class="concept-title">Common Misconceptions - Myths vs. Reality</div>
+                
+                <div class="myth-reality">
+                    <div class="myth-box">
+                        <strong>❌ Myth</strong>
+                        <p>AI is thinking and understanding like a human</p>
+                    </div>
+                    <div class="reality-box">
+                        <strong>✓ Reality</strong>
+                        <p>AI is predicting likely responses based on patterns in training data</p>
+                    </div>
+                </div>
+
+                <div class="myth-reality">
+                    <div class="myth-box">
+                        <strong>❌ Myth</strong>
+                        <p>If AI says it confidently, it must be true</p>
+                    </div>
+                    <div class="reality-box">
+                        <strong>✓ Reality</strong>
+                        <p>AI has no concept of truth. It generates plausible-sounding text regardless of accuracy</p>
+                    </div>
+                </div>
+
+                <div class="myth-reality">
+                    <div class="myth-box">
+                        <strong>❌ Myth</strong>
+                        <p>AI will replace my job</p>
+                    </div>
+                    <div class="reality-box">
+                        <strong>✓ Reality</strong>
+                        <p>AI is a tool that makes you more efficient. Your judgment, context, and expertise are still essential</p>
+                    </div>
+                </div>
+
+                <div class="myth-reality">
+                    <div class="myth-box">
+                        <strong>❌ Myth</strong>
+                        <p>I need to be technical to use AI</p>
+                    </div>
+                    <div class="reality-box">
+                        <strong>✓ Reality</strong>
+                        <p>If you can type a question or request, you can use AI</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Takeaway -->
+            <div class="highlight-box">
+                <strong>🎯 Key Takeaway:</strong>
+                <p>AI is a powerful tool for language-based tasks, but it's pattern matching, not thinking. You're still in charge - AI assists, you verify and decide. Your judgment, context, and expertise remain essential.</p>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>Ready to Test Your Knowledge?</h3>
+                <p>You've reviewed the key concepts from Module 1. Now demonstrate your understanding by taking the checkpoint quiz.</p>
+                <a href="https://lmthron.github.io/mission-ai-level-001/module1-quiz.html" class="quiz-button">Take Module 1 Quiz</a>
+                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">90% required to pass and earn Trainee Agent status 🎯</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
